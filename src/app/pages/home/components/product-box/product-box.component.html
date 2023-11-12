@@ -1,0 +1,22 @@
+<mat-card *ngIf="product" [routerLink]="routerLinkProduct" class="cursor-pointer p-3 h-full">
+  <div class="flex flex-col justify-between h-full">
+    <div class="flex-1 items-stretch sm:items-center">
+      <img [src]="product.image" [alt]="product.title" class="object-contain block mx-auto h-[150px] my-3">
+    </div>
+
+    <div class="flex flex-col justify-between flex-1">
+      <div>
+        <p class="font-bold text-center">{{product.title}}</p>
+        <p class="capitalize text-center">{{product.category}}</p>
+      </div>
+
+      <div class="flex justify-evenly items-center">
+        <span class="text-red-400 font-bold">{{ product.price | currency }}</span>
+        <button mat-flat-button (click)="onAddToCart($event)" class="text-center">
+          <mat-icon style="margin-right: 0;" class="text-gray-500">shopping_cart</mat-icon>
+        </button>
+
+      </div>
+    </div>
+  </div>
+</mat-card>
