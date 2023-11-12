@@ -1,0 +1,22 @@
+<div *ngIf="!categories" class="hidden md:flex justify-center items-center w-full h-[40vh]">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="categories">
+
+  <mat-panel-title>
+    <div class="text-center font-semibold">CATEGORIES</div>
+  </mat-panel-title>
+
+  <div *ngIf="categories && categories.length > 0">
+    <mat-selection-list [multiple]="false">
+      <!-- Default option -->
+      <mat-list-option selected="true" value="" (click)="onShowCategory('')">All</mat-list-option>
+      <mat-list-option *ngFor="let category of categories" [value]="category" (click)="onShowCategory(category)">
+        <button class="capitalize">{{ category }}</button>
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+  
+  <button class="w-full" (click)="onCloseFiltersDrawer()" mat-flat-button><mat-icon>filter_alt_off</mat-icon> Close filters</button>
+</div>
