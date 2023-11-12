@@ -7,12 +7,8 @@ import { ThanksComponent } from './pages/thanks/thanks.component';
 
 const routes: Routes = [
   {
-    path: "home",
-    component: HomeComponent
-  },
-  {
     path: "",
-    redirectTo: "home", pathMatch: "full"
+    component: HomeComponent
   },
   {
     path: "cart",
