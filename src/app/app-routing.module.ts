@@ -8,7 +8,8 @@ import { ThanksComponent } from './pages/thanks/thanks.component';
 const routes: Routes = [
   {
     path: "",
-    component: HomeComponent
+    component: HomeComponent,
+    pathMatch: "full"
   },
   {
     path: "cart",
@@ -21,6 +22,11 @@ const routes: Routes = [
   {
     path: 'thanks',
     component: ThanksComponent
+  },
+  {
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full'
   }
 ];
 
