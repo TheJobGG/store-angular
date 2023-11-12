@@ -49,7 +49,7 @@ export class CartComponent implements OnInit, OnDestroy {
     console.log(environment.stripeTestKey)
     this.httpClient.post(`${environment.backendBaseUrl}/checkout`, {
       items: this.cart.items,
-    }, {headers: {'Authorization': `Bearer ${environment.stripeTestKey}`}})
+    })
     .subscribe(async (res: any) => {
         let stripe = await loadStripe(environment.stripeTestKey);
         stripe?.redirectToCheckout({ sessionId: res.id })
