@@ -1,0 +1,39 @@
+<mat-drawer-container [autosize]="true" class="min-h-full max-w-7xl mx-auto border-x">
+
+  <!-- Drawer que quiero abrir de nuevo -->
+  <mat-drawer mode="over" [opened]="openFilters" class="lg:block" (openedChange)="onDrawerStateChange($event)" >
+    <div class="text-lg text-center font-bold mb-5">Filters</div>
+    <app-filters (showCategory)="onShowCategory($event)" (closeFiltersDrawer)="onOpenFilters($event)"></app-filters>
+  </mat-drawer>
+
+  <mat-drawer-content class="p-6">
+    <app-products-header 
+    
+    (itemsShowCountChange)="onItemsShowCountChange($event)" 
+    (sortChange)="onSortChange($event)"
+    (openFilters)="onOpenFilters($event)"
+    ></app-products-header>
+
+    
+    <div *ngIf="loadingProducts" class="w-full min-h-screen flex justify-center items-center" >
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <div *ngIf="!loadingProducts" class="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      <ng-container *ngFor="let product of products">
+        <app-product-box [product]="product" (addToCart)="onAddToCart($event)" class="w-full"></app-product-box>
+      </ng-container>
+    </div>
+
+    <!-- <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="rowHeight" *ngIf="!loadingProducts">
+      <mat-grid-tile *ngFor="let product of products">
+
+        <app-product-box [product]="product" (addToCart)="onAddToCart($event)" class="w-full" [fullWidthMode]="cols === 1"></app-product-box>
+
+      </mat-grid-tile>
+
+    </mat-grid-list> -->
+
+  </mat-drawer-content>
+</mat-drawer-container>
+<app-footer></app-footer>
