@@ -1,0 +1,62 @@
+<!-- Electronic -->
+<ng-container *ngIf="productCategory === categories.electronics">
+  <p>Extra options</p>
+  <div class="mb-5">
+    <mat-checkbox class="-ml-2" [(ngModel)]="guaranty">Include guaranty for 1 year</mat-checkbox>
+  </div>
+</ng-container>
+
+<!-- Jewelery -->
+<ng-container *ngIf="productCategory === categories.jewelery">
+
+  <div class="mb-5">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>Extra options</mat-expansion-panel-header>
+      <div class="flex flex-col gap-2">
+
+        <!-- ngModelChange... -->
+        <mat-checkbox  class="-ml-2" [(ngModel)]="engravings">Include Custom Engravings</mat-checkbox>
+
+        <mat-form-field class="transition-opacity" [ngClass]="{'h-full opacity-100': engravings, 'h-0 opacity-0': !engravings}">
+          <mat-label>Write the engraving (max 10 characters)</mat-label>
+          <input matInput type="text" [(ngModel)]="engravingText" (input)="verifyLength($event)" maxlength="10">
+
+        </mat-form-field>
+        <mat-checkbox class="-ml-2" [(ngModel)]="giftWrapping">Receive the product wrapped in gift paper</mat-checkbox>
+        <mat-checkbox class="-ml-2" [(ngModel)]="authenticityCertificate">Include a certificate of
+          authenticity</mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+  </div>
+
+</ng-container>
+
+<!-- Men´s clothing and Women's clothing -->
+<ng-container *ngIf="productCategory === categories.menClothing || productCategory === categories.womenClothing">
+  <div class="mb-5">
+    <p>Size{{size ? ': ' + size : ''}}</p>
+    <mat-button-toggle-group name="Clothe size" aria-label="Clothe size" [(ngModel)]="size"
+      (change)="emitChangeSize($event)">
+      <mat-button-toggle value="S">Small (S)</mat-button-toggle>
+      <mat-button-toggle value="M">Medium (M)</mat-button-toggle>
+      <mat-button-toggle value="L">Large (L)</mat-button-toggle>
+      <mat-button-toggle value="XL">Extra Large (XL)</mat-button-toggle>
+    </mat-button-toggle-group>
+    <div>
+      <small *ngIf="!size" class="text-red-400 italic">Select a size</small>
+    </div>
+  </div>
+
+</ng-container>
+
+<!-- Women´s clothing -->
+<ng-container *ngIf="productCategory === categories.womenClothing">
+  <div class="mb-5">
+    Product category are: 👩 {{productCategory}}
+  </div>
+
+</ng-container>
+
+<ng-container *ngIf="!included">
+  This product has no extra options...
+</ng-container>
