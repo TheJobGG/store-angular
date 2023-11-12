@@ -1,1 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.line-clamp {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+/* product-box h5 */
+.text-h5{
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+
+.my-text-lg {
+  font-size: 1.125rem/* 18px */;
+  line-height: 1.75rem/* 28px */;
+}
+
+.animate-slice-right{
+  animation: slice-right 4s ease infinite;
+}
+
+@keyframes slice-right {
+  0% {
+    translate: -2px 0;
+  }
+  
+  50% {
+    translate: 2px 0;
+  }
+  
+  100% {
+    translate: -2px 0;
+  }
+}
