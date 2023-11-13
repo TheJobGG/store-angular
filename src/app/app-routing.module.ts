@@ -8,20 +8,24 @@ import { ThanksComponent } from './pages/thanks/thanks.component';
 const routes: Routes = [
   {
     path: "",
-    component: HomeComponent,
-    pathMatch: "full"
-  },
-  {
-    path: "cart",
-    component: CartComponent
-  },
-  {
-    path: 'product/:id',
-    component: ProductPage,
-  },
-  {
-    path: 'thanks',
-    component: ThanksComponent
+    children: [
+      {
+        path: "",
+        component: HomeComponent
+      },
+      {
+        path: "cart",
+        component: CartComponent
+      },
+      {
+        path: 'product/:id',
+        component: ProductPage,
+      },
+      {
+        path: 'thanks',
+        component: ThanksComponent
+      }
+    ]
   },
   {
     path: '**',
@@ -31,7 +35,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: "top"})],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: "top" })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
